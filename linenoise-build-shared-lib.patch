@@ -47,7 +47,7 @@ index 3086e92..a1a906f 100644
 +	install -m 0644 linenoise.h $(DESTDIR)$(INCLUDEDIR)
 +	install -m 0755 -d $(DESTDIR)$(LIBDIR)
 +	install -m 0755 $(LIB) $(DESTDIR)$(LIBDIR)
-+	ldconfig -n $(DESTDIR)$(LIBDIR)
++	/sbin/ldconfig -n $(DESTDIR)$(LIBDIR)
 +	ln -s $(LIB) $(DESTDIR)$(LIBDIR)/liblinenoise.so
 -- 
 1.7.11.7
