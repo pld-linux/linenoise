@@ -1,5 +1,5 @@
 
-%global git_rev 7946e2c
+%define	git_rev 7946e2c
 
 Summary:	Minimal replacement for readline
 Name:		linenoise
