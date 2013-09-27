@@ -1,6 +1,4 @@
-
 %define	git_rev 7946e2c
-
 Summary:	Minimal replacement for readline
 Name:		linenoise
 Version:	0
@@ -20,19 +18,20 @@ Release:	0.git%{git_rev}.2
 # I synthesized one as Source1.
 License:	BSD
 Group:		Libraries
-URL:		https://github.com/tadmarshall/linenoise
 Source0:	https://github.com/tadmarshall/linenoise/tarball/%{git_rev}/%{name}-%{git_rev}.tar.gz
 # Source0-md5:	7cb42d58db11bf3c33b8dd698ec92754
 Patch0:		%{name}-build-shared-lib.patch
 Patch1:		%{name}-symbol-visibility.patch
-
-%package devel
-Summary:	Development files for %{name}
-Requires:	%{name}%{?_isa} = %{version}-%{release}
+URL:		https://github.com/tadmarshall/linenoise
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Linenoise is a replacement for the readline line-editing library with
 the goal of being smaller.
+
+%package devel
+Summary:	Development files for %{name}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 This package contains files needed for developing software that uses
@@ -52,12 +51,17 @@ This package contains files needed for developing software that uses
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} install \
 	LIBDIR="%{_libdir}" \
 	INCLUDEDIR="%{_includedir}" \
 	CFLAGS="%{rpmcflags}" \
-	DESTDIR="$RPM_BUILD_ROOT"
+	DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -69,9 +73,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_includedir}/linenoise.h
 %{_libdir}/liblinenoise.so
-
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
-%clean
-rm -rf $RPM_BUILD_ROOT
