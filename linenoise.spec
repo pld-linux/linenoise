@@ -23,6 +23,7 @@ Source0:	https://github.com/tadmarshall/linenoise/tarball/%{git_rev}/%{name}-%{g
 Patch0:		%{name}-build-shared-lib.patch
 Patch1:		%{name}-symbol-visibility.patch
 URL:		https://github.com/tadmarshall/linenoise
+BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
