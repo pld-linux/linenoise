@@ -4,7 +4,7 @@
 Summary:	Minimal replacement for readline
 Name:		linenoise
 Version:	0
-Release:	0.git%{git_rev}
+Release:	0.git%{git_rev}.1
 # The licenses are a bit of a mess here...
 # utf8.{c,h} contain incomplete license headers. They refer to a "LICENSE" file
 # which is actually from jimtcl. A copy is committed in dist-git as
@@ -40,6 +40,9 @@ This package contains files needed for developing software that uses
 
 %prep
 %setup -q -n tadmarshall-%{name}-%{git_rev}
+
+sed -i -e 's#ldconfig.*##g' Makefile
+
 %patch0 -p1
 %patch1 -p1
 
