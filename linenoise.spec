@@ -1,8 +1,9 @@
 %define	git_rev 7946e2c
+%define	rel	3
 Summary:	Minimal replacement for readline
 Name:		linenoise
 Version:	0
-Release:	0.git%{git_rev}.2
+Release:	0.git%{git_rev}.%{rel}
 # The licenses are a bit of a mess here...
 # utf8.{c,h} contain incomplete license headers. They refer to a "LICENSE" file
 # which is actually from jimtcl. A copy is committed in dist-git as
