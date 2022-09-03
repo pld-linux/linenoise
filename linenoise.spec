@@ -45,18 +45,18 @@ This package contains files needed for developing software that uses
 %patch1 -p1
 
 %build
+export CFLAGS="%{rpmcflags}"
 %{__make} \
 	CC="%{__cc}" \
 	LIBDIR="%{_libdir}" \
-	INCLUDEDIR="%{_includedir}" \
-	CFLAGS="%{rpmcflags}"
+	INCLUDEDIR="%{_includedir}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+export CFLAGS="%{rpmcflags}"
 %{__make} install \
 	LIBDIR="%{_libdir}" \
 	INCLUDEDIR="%{_includedir}" \
-	CFLAGS="%{rpmcflags}" \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
