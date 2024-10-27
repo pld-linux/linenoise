@@ -1,6 +1,7 @@
 %define	git_rev 7946e2c
 %define	rel	3
 Summary:	Minimal replacement for readline
+Summary(pl.UTF-8):	Minimalny zamiennik readline
 Name:		linenoise
 Version:	0
 Release:	0.git%{git_rev}.%{rel}
@@ -31,13 +32,23 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Linenoise is a replacement for the readline line-editing library with
 the goal of being smaller.
 
+%description -l pl.UTF-8
+Linenoise to zamiennik biblioteki edycji linii readline, mający na
+celu mniejszy rozmiar.
+
 %package devel
-Summary:	Development files for %{name}
+Summary:	Development files for linenoise library
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki linenoise
+Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 This package contains files needed for developing software that uses
-%{name}.
+linenoise library.
+
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki potrzebne do tworzenia oprogramowania
+wykorzystującego bibliotekę linenoise.
 
 %prep
 %setup -q -n tadmarshall-%{name}-%{git_rev}
@@ -53,6 +64,7 @@ export CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 export CFLAGS="%{rpmcflags}"
 %{__make} install \
 	LIBDIR="%{_libdir}" \
@@ -73,5 +85,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/linenoise.h
 %{_libdir}/liblinenoise.so
+%{_includedir}/linenoise.h
