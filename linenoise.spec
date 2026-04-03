@@ -1,5 +1,5 @@
 %define	git_rev 7946e2c
-%define	rel	3
+%define	rel	4
 Summary:	Minimal replacement for readline
 Summary(pl.UTF-8):	Minimalny zamiennik readline
 Name:		linenoise
